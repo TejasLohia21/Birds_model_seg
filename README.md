@@ -1,53 +1,73 @@
-# es335-24-fall-assignment-4
-# Instructions to set up the project locally
-```bash
-python3 -m venv env
-```
-Activating the environment on Windows:
-```bash
-env\Scripts\activate
-```
-Activating the environment on MacOS/Linux:
-```bash
-source env/bin/activate
-```
-Installing dependencies:
-```bash
-pip3 install -r requirements.txt
-```
+## Performance Comparison of Binary Classification Models
 
-# Solutions
+This project focuses on evaluating the performance of various convolutional neural network (CNN) architectures and configurations on a binary classification task. The models tested include variations of VGG, transfer learning approaches, and a custom MLP model. The study aims to analyze the impact of model depth, data augmentation, and transfer learning strategies on classification accuracy and efficiency.
 
-## Question-1: 
-[`./question_1.ipynb`](./question_1.ipynb)
-### Are the results as expected? Why or why not?
-Yes, the results are mostly expected but certain better and larger models show unexpected behaviour with poor performance. This is due to training at less number of epochs.
-### Does data augmentation help? Why or why not?
-Data augmentation involves applying random transformations (like rotations, flips, cropping, and color changes) to the training images, which effectively increases the diversity of data available to the model.
+Dataset Creation
 
-**Increases Variability:** By exposing the model to slightly altered versions of the images, data augmentation helps the model learn more robust features, making it less likely to overfit to specific details of the training images.
+The dataset was created based on the first names of the group members, selecting two classes of images representing the initials. For instance:
+	•	Vulture vs. Rat for names starting with “V” and “R.”
+	•	Vada Pav vs. Roti for other examples.
 
-**Improves Generalization:** The transformations simulate real-world variations, which makes the model more adaptable to variations in new data.
+The dataset contains:
+	•	100 images per class (200 total).
+	•	Training set: 80 images per class.
+	•	Testing set: 20 images per class.
 
-**Reduces Overfitting:** In cases of small datasets, overfitting is a common problem. Data augmentation helps by artificially enlarging the dataset and reducing the model’s dependence on specific patterns, improving generalization to unseen data.
+Images were collected using:
+	•	Bulk Image Downloader Script.
+	•	DuckDuckGo Images Repository.
 
-### Does it matter how many epochs you fine-tune the model? Why or why not?
-Fine-tuning for too few epochs may result in underfitting, where the model hasn’t yet learned enough about the specific features of the new dataset. Fine-tuning for too many epochs may lead to overfitting, where the model starts to "memorize" the fine-tuning dataset instead of learning generalizable features.
+## Models and Configurations
 
-**Learning Rate and Pre-trained Weights:** Since fine-tuning generally starts from pre-trained weights, the learning rate and number of epochs need careful adjustment to avoid "forgetting" useful, general features learned from the pre-training dataset.
+The following models were trained and evaluated:
+	1.	VGG (1 block)
+	2.	VGG (3 blocks)
+	3.	VGG (3 blocks) with data augmentation
+	4.	Transfer learning with VGG16/VGG19 (all layers fine-tuned)
+	5.	Transfer learning with VGG16/VGG19 (only final MLP layers fine-tuned)
 
-### Are there any particular images that the model is confused about? Why or why not?
-Yes, there are many images of black ducks that the model predicts as magpies. This confusion may be due to the similarity in the color of the two birds, especially when the black duck is in a similar pose to the magpie. When a magpie is in flight, its body shape can appear more rounded, which could be mistaken for a duck, especially if the distinctive tail feathers are not clearly visible.
+A custom MLP model with comparable parameters to VGG16 was also developed for performance comparison.
 
-## Question-2: 
-[`./question_2.ipynb`](./question_2.ipynb)
+Evaluation Metrics
 
+Each model was evaluated on the following metrics:
+	•	Training Time
+	•	Training Loss
+	•	Training Accuracy
+	•	Testing Accuracy
+	•	Number of Model Parameters
 
-# Questions
-## Question-1 [6 Marks]
+Results were tabulated for easy comparison.
 
+Visualization with Tensorboard
 
+Tensorboard was used for detailed performance tracking and visualization:
+	1.	Scalars:
+	•	Training loss vs. iterations.
+	•	Training accuracy vs. iterations.
+	•	Testing accuracy vs. iterations.
+	2.	Images:
+	•	Predictions on the test set visualized alongside actual labels.
 
+Insights and Observations
 
+The project investigates key insights such as:
+	•	Impact of data augmentation: Does it improve model performance?
+	•	Effect of fine-tuning duration: How does the number of epochs influence accuracy?
+	•	Model confusion: Analysis of images where the model struggles to classify correctly.
 
+Image Generation and Testing
 
+To test model robustness:
+	•	Images were generated with tools like DALL·E or similar.
+	•	Prompts created:
+	•	Class A: easy to classify.
+	•	Class A: hard to classify.
+	•	Class B: easy to classify.
+	•	Class B: hard to classify.
+
+Model performance on these sets of images was recorded and analyzed.
+
+Conclusion
+
+The study concludes with a comparison between the MLP model and VGG variants, analyzing factors like architecture complexity, transfer learning strategies, and augmentation benefits. Key findings and recommendations are presented based on experimental results.
