@@ -1,6 +1,6 @@
 ## Performance Comparison of Binary Classification Models
 
-Project done as a part of course project under supervision of Prof. Nipun Batra in collaboration with [Mohit Kamlesh Panchal](https://github.com/rayvego) and [Devansh Lodha]([https://github.com/rayvego)](https://github.com/devansh-lodha) 
+Project done as a part of course project under supervision of Prof. Nipun Batra in collaboration with [Mohit Kamlesh Panchal](https://github.com/rayvego) and [Devansh Lodha]([https://github.com/rayvego) 
 
 This project focuses on evaluating the performance of various convolutional neural network (CNN) architectures and configurations on a binary classification task. The models tested include variations of VGG, transfer learning approaches, and a custom MLP model. The study aims to analyze the impact of model depth, data augmentation, and transfer learning strategies on classification accuracy and efficiency.
 
